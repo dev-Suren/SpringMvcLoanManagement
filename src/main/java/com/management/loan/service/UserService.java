@@ -7,6 +7,9 @@ import org.h2.engine.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class UserService {
     @Autowired
@@ -16,7 +19,7 @@ public class UserService {
         userDao.addLoanDetails(userDetails);
     }
 
-    public UserDetails getDetails(UserDetails userDetails){
-        return  userDao.getElementByUsername(userDetails.getUsername());
+    public UserDetails logins(){
+        return userDao.getElementByUsername();
     }
 }

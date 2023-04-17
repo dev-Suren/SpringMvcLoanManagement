@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class LoginAndRegistration {
@@ -21,15 +22,24 @@ public class LoginAndRegistration {
     }
     @PostMapping("/login")
     public String login(@ModelAttribute("login") UserDetails details){
-        UserDetails userDetails = userService.getDetails(details);
-        if(details.getUsername()==userDetails.getUsername() && details.getPassword() == userDetails.getPassword()){
-            if(userDetails.getIsAdmin()==true){
-                return "redirect:/unapproved";
-            }
-            else {
-                return "redirect:/loanform";
-            }
+        UserDetails userDetails = userService.logins();
+
+        if(details.getUsername().equals(userDetails.getUsername()) && details.getPassword().equals(userDetails.getPassword())){
+            return "redirect:/home";
         }
-       return null;
+        else {
+            return "/";
+        }
+
+    }
+
+
+
+
+
+    @PostMapping("/getdetails")
+    public String posts(@ModelAttribute("getdetails") UserDetails details){
+        userService.registration(details);
+        return "index";
     }
 }

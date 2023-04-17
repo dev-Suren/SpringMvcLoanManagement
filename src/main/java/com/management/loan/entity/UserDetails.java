@@ -15,14 +15,12 @@ public class UserDetails {
     private String username;
     @Column(name = "password")
     private String password;
-    @Column(name = "isAdmin")
-    private boolean isAdmin;
 
-    public UserDetails(int id, String username, String password, boolean isAdmin) {
+    public UserDetails(int id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
-        this.isAdmin = isAdmin;
+
     }
 
     public UserDetails(){
@@ -53,13 +51,6 @@ public class UserDetails {
         this.password = password;
     }
 
-    public boolean getIsAdmin() {
-        return isAdmin;
-    }
-
-    public void setIsAdmin(boolean isAdmin) {
-        this.isAdmin = isAdmin;
-    }
 
     @Override
     public String toString() {
@@ -67,7 +58,6 @@ public class UserDetails {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", isAdmin='" + isAdmin + '\'' +
                 '}';
     }
 }

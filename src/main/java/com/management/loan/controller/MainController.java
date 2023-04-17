@@ -65,4 +65,12 @@ public class MainController {
         loanService.updateLoanDetails(loanDetail);
         return "redirect:/unapproved";
     }
+
+    @RequestMapping("/home")
+    public ModelAndView mainPage(){
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.addObject("loan_list",loanService.getLoanDetails());
+        modelAndView.setViewName("main");
+        return modelAndView;
+    }
 }
